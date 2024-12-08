@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Form</title>
+    <style>
+
+body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7e9, #ffffff, #f9f9f9); 
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header img {
+            margin-right: 15px;
+            width: 50px;
+            height: auto;
+        }
+
+        header h3 {
+            font-size: 15px;
+            margin: 0;
+            color: white;
+        }
+
+        #customerSignature {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: crosshair; /* Drawing cursor */
+}
+
+
+        .form-container {
+    background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+    padding: 30px; 
+
+    max-width: 800px; /* Adjusted width for a sleek design */
+    margin: 40px auto; /* Centered with extra spacing from the top */
+    
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        max-width: 95%; /* Utilize more screen space */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 15px; /* Compact padding for very small devices */
+        border-radius: 8px; /* Slightly smaller corners for consistency */
+    }
+}
+
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h3 {
+            font-size: 20px;
+            color: #087724;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #666;
+            width: 45%;
+        }
+
+        .form-group input, 
+.form-group textarea, 
+.form-group select {
+    width: 50%;
+    padding: 12px; /* Increased padding for a more comfortable input */
+    font-size: 16px; /* Slightly larger font for better readability */
+    border: 1px solid #ccc; /* Subtle border for a cleaner look */
+    border-radius: 6px; /* Softer corners for modern design */
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transitions */
+}
+
+/* Hover Effect */
+.form-group input:hover, 
+.form-group textarea:hover, 
+.form-group select:hover {
+    border-color: #888; /* Slightly darker border on hover */
+}
+
+/* Focus Effect */
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+    border-color: #3fb559; /* Highlight border on focus */
+    box-shadow: 0 0 6px rgba(63, 181, 108, 0.4); /* Outer glow effect */
+    background-color: #fff; /* Highlight background */
+    outline: none; /* Remove default outline */
+}
+
+/* Placeholder Text Styling */
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    font-size: 14px; /* Smaller font size for placeholders */
+    color: #aaa; /* Subtle placeholder text color */
+}
+
+/* Disabled State */
+.form-group input:disabled, 
+.form-group textarea:disabled, 
+.form-group select:disabled {
+    background-color: #eee; /* Grayish background for disabled fields */
+    color: #888; /* Grayish text color */
+    cursor: not-allowed; /* Indicate disabled state */
+    box-shadow: none; /* Remove shadow for disabled fields */
+}
+
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-group input[type="date"],
+        .form-group input[type="time"] {
+            width: auto;
+            max-width: 150px;
+        }
+
+        .form-group button {
+            background-color: #087724;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .form-group button:hover {
+            background-color: red;
+        }
+
+        .witnesses-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .witnesses-section h4 {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .witnesses-section .form-group {
+            display: block;
+        }
+
+        .witnesses-section .form-group input,
+        .witnesses-section .form-group textarea {
+            width: 100%;
+        }
+
+        .accident-canvas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #sketchCanvas {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #employeeSignature {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: crosshair; /* Show drawing cursor */
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #087724;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: red;
+}
+
+    </style>
+</head>
+
+
+
+
+
+<body>
+    <header>
+        <img src="logo.jpg" alt="Logo">
+        <h3>Motor Accident / Incident Claim Form</h3>
+    </header>
+
+    <div class="form-container">
+        <form>
+            <div class="form-group">
+                <label for="driverName">RA No.</label>
+                <input type="text" id="driverName" name="driverName" placeholder="Enter RA No." required>
+                
+                <label for="accidentDate">Date:</label>
+                <input type="date" id="accidentDate" name="Date" required>
+            </div>
+            <!-- Driver Details -->
+            <div class="form-section">
+                <h3>Driver Details</h3>
+                <div class="form-group">
+                    <label for="driverName">Name & Surname:</label>
+                    <input type="text" id="driverName" name="driverName" placeholder="Enter Name & Surname" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverID">I.D. / Passport No.:</label>
+                    <input type="text" id="driverID" name="driverID" placeholder="Enter ID or Passport Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverContact">Cell:</label>
+                    <input type="tel" id="driverContact" name="driverContact" placeholder="Enter Contact Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverContact">Home:</label>
+                    <input type="tel" id="driverContact" name="driverContact" placeholder="Enter Contact Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverAddress">Address:</label>
+                    <input type="text" id="driverAddress" name="driverAddress" placeholder="Enter Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverEmail">Email Address:</label>
+                    <input type="email" id="driverEmail" name="driverEmail" placeholder="Enter Email Address" required>
+                </div>
+            </div>
+
+            <!-- Vehicle Details -->
+            <div class="form-section">
+                <h3>Vehicle Details</h3>
+                <div class="form-group">
+                    <label for="vehicleMake">Make:</label>
+                    <input type="text" id="vehicleMake" name="vehicleMake" placeholder="Enter Vehicle Make" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleRegNo">Vehicle Reg No.:</label>
+                    <input type="text" id="vehicleRegNo" name="vehicleRegNo" placeholder="Enter Vehicle Registration Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleModelColor">Model & Color:</label>
+                    <input type="text" id="vehicleModelColor" name="vehicleModelColor" placeholder="Enter Model & Color" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleDamage">Details of Damage:</label>
+                    <textarea id="vehicleDamage" name="vehicleDamage" rows="3" placeholder="Describe Vehicle Damage" required></textarea>
+                </div>
+            </div>
+
+            <!-- Third Party Details -->
+            <div class="form-section">
+                <h3>Third Party Details</h3>
+                <div class="form-group">
+                    <label for="thirdPartyName">Name & Surname:</label>
+                    <input type="text" id="thirdPartyName" name="thirdPartyName" placeholder="Enter Name & Surname" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyAddress">Address:</label>
+                    <input type="text" id="thirdPartyAddress" name="thirdPartyAddress" placeholder="Enter Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyID">I.D. / Passport No.:</label>
+                    <input type="text" id="thirdPartyID" name="thirdPartyID" placeholder="Enter ID or Passport Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyContact">Contact No.:</label>
+                    <input type="tel" id="thirdPartyContact" name="thirdPartyContact" placeholder="Enter Contact Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyEmail">Email Address:</label>
+                    <input type="email" id="thirdPartyEmail" name="thirdPartyEmail" placeholder="Enter Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyVehicle">Make/Model:</label>
+                    <input type="text" id="thirdPartyVehicle" name="thirdPartyVehicle" placeholder="Enter Vehicle Make/Model" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyRegNo">Vehicle Reg No.:</label>
+                    <input type="text" id="thirdPartyRegNo" name="thirdPartyRegNo" placeholder="Enter Vehicle Registration Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdPartyDamage">Details of Damage:</label>
+                    <textarea id="thirdPartyDamage" name="thirdPartyDamage" rows="3" placeholder="Describe Vehicle Damage" required></textarea>
+                </div>
+            </div>
+
+            <!-- Other Party Details -->
+            <div class="form-section">
+                <h3>Other Party Details</h3>
+                <div class="form-group">
+                    <label for="otherPartyName">Name & Surname:</label>
+                    <input type="text" id="otherPartyName" name="otherPartyName" placeholder="Enter Name & Surname" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyAddress">Address:</label>
+                    <input type="text" id="otherPartyAddress" name="otherPartyAddress" placeholder="Enter Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyID">I.D. / Passport No.:</label>
+                    <input type="text" id="otherPartyID" name="otherPartyID" placeholder="Enter ID or Passport Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyContact">Contact No.:</label>
+                    <input type="tel" id="otherPartyContact" name="otherPartyContact" placeholder="Enter Contact Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyEmail">Email Address:</label>
+                    <input type="email" id="otherPartyEmail" name="otherPartyEmail" placeholder="Enter Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyVehicle">Make/Model:</label>
+                    <input type="text" id="otherPartyVehicle" name="otherPartyVehicle" placeholder="Enter Vehicle Make/Model" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyRegNo">Vehicle Reg No.:</label>
+                    <input type="text" id="otherPartyRegNo" name="otherPartyRegNo" placeholder="Enter Vehicle Registration Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="otherPartyDamage">Details of Damage:</label>
+                    <textarea id="otherPartyDamage" name="otherPartyDamage" rows="3" placeholder="Describe Vehicle Damage" required></textarea>
+                </div>
+
+ <!-- Witnesses -->
+ <div class="form-section">
+    <h3>Witnesses</h3>
+    <h4>Independent Witness 1</h4>
+    <div class="form-group">
+        <label for="witness1Name">Full Name:</label>
+        <input type="text" id="witness1Name" name="witness1Name" placeholder="Enter Full Name" required>
+    </div>
+    <div class="form-group">
+        <label for="witness1Email">Email Address:</label>
+        <input type="email" id="witness1Email" name="witness1Email" placeholder="Enter Email Address" required>
+    </div>
+    <div class="form-group">
+        <label for="witness1Contact">Contact No.:</label>
+        <input type="tel" id="witness1Contact" name="witness1Contact" placeholder="Enter Contact Number" required>
+    </div>
+
+    <h4>Independent Witness 2</h4>
+    <div class="form-group">
+        <label for="witness2Name">Full Name:</label>
+        <input type="text" id="witness2Name" name="witness2Name" placeholder="Enter Full Name" required>
+    </div>
+    <div class="form-group">
+        <label for="witness2Email">Email Address:</label>
+        <input type="email" id="witness2Email" name="witness2Email" placeholder="Enter Email Address" required>
+    </div>
+    <div class="form-group">
+        <label for="witness2Contact">Contact No.:</label>
+        <input type="tel" id="witness2Contact" name="witness2Contact" placeholder="Enter Contact Number" required>
+    </div>
+</div>
+
+<!-- Accident Details -->
+<div class="form-section">
+    <h3>Accident Details</h3>
+    <div class="form-group">
+        <label for="policeStation">Police Station:</label>
+        <input type="text" id="policeStation" name="policeStation" placeholder="Enter Police Station" required>
+    </div>
+    <div class="form-group">
+        <label for="accidentDate">Date:</label>
+        <input type="date" id="accidentDate" name="accidentDate" required>
+    </div>
+    <div class="form-group">
+        <label for="accidentPlace">Place of Accident:</label>
+        <input type="text" id="accidentPlace" name="accidentPlace" placeholder="Enter Place of Accident" required>
+    </div>
+    <div class="form-group">
+        <label for="arNumber">AR Number:</label>
+        <input type="text" id="arNumber" name="arNumber" placeholder="Enter AR Number" required>
+    </div>
+    <div class="form-group">
+        <label for="accidentTime">Time:</label>
+        <input type="time" id="accidentTime" name="accidentTime" required>
+    </div>
+    <div class="form-group">
+        <label for="roadSurface">Road Surface:</label>
+        <input type="text" id="roadSurface" name="roadSurface" placeholder="Enter Road Surface Condition" required>
+    </div>
+    <div class="form-group">
+        <label for="visibility">Visibility:</label>
+        <input type="text" id="visibility" name="visibility" placeholder="Enter Visibility Condition" required>
+    </div>
+    <div class="form-group">
+        <label for="accidentDescription">Description of Accident (Please explain how the accident occurred):</label>
+        <textarea id="accidentDescription" name="accidentDescription" rows="5" placeholder="Describe how the accident occurred" required></textarea>
+    </div>
+
+
+    <!-- Sketch of Accident -->
+    <div class="form-section">
+        <h3>Sketch of Accident</h3>
+        <p>Please clearly show the point of impact & direction of travel by arrows:</p>
+        <canvas id="sketchCanvas" width="600" height="400"></canvas>
+        <button type="button" id="clearCanvas">Clear Sketch</button>
+    </div>
+
+
+    <div class="form-section">
+        <h3>Driver Acknowledgement</h3>
+    
+        <!-- Question 1 -->
+        <div class="form-group">
+            <label for="collisionHistory">Have you been in a collision/accident in the last 24 months?</label>
+            <select id="collisionHistory" name="collisionHistory" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </div>
+    
+        <!-- Question 2 -->
+        <div class="form-group">
+            <label for="liabilityAdmitted">Was fault/liability admitted by any party?</label>
+            <select id="liabilityAdmitted" name="liabilityAdmitted" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </div>
+<!-- Furnish Details (conditionally displayed) -->
+<div class="form-group" id="furnishDetailsGroup" style="display: none;">
+    <label for="furnishDetails">If Yes, furnish details:</label>
+    <textarea id="furnishDetails" name="furnishDetails" rows="4" placeholder="Provide details here..."></textarea>
+</div>
+</div>
+
+<!-- Driver Declaration -->
+<div class="form-section">
+    <h3>Declaration</h3>
+    <p>
+        I,  <input type="text" id="visibility" name="visibility" placeholder="" required>, 
+        hereby declare that the foregoing particulars are factual in every aspect.
+    </p>
+
+    <!-- Customer Signature and Date -->
+    <div class="form-group">
+        <label for="customerSignature">Customer Signature:</label>
+        <canvas id="customerSignature" width="400" height="150" style="border: 1px solid #ddd;"></canvas>
+        <button type="button" id="clearCustomerSignature" style="margin-top: 10px;">Clear</button>
+    </div>
+    
+
+    <div class="form-group">
+        <label for="customerDate">Date:</label>
+        <input type="date" id="customerDate" name="customerDate" required>
+    </div>
+</div>
+
+<!-- Employee Section -->
+<div class="form-section">
+    <h3>Employee Verification</h3>
+
+    <!-- License Check -->
+    <div class="form-group">
+        <label for="licenseCheck">License Check:</label>
+        <select id="licenseCheck" name="licenseCheck" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <!-- Copy of License -->
+    <div class="form-group">
+        <label for="copyOfLicense">Copy of License:</label>
+        <select id="copyOfLicense" name="copyOfLicense" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <!-- Employee Name and Signature -->
+    <div class="form-group">
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" id="employeeName" name="employeeName" placeholder="Enter employee name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="employeeSignature">Employee Signature:</label>
+        <canvas id="employeeSignature" width="400" height="150" style="border: 1px solid #ddd;"></canvas>
+        <button type="button" id="clearSignature" style="margin-top: 10px;">Clear</button>
+    </div>    
+
+    <div class="form-group">
+        <label for="employeeDate">Date:</label>
+        <input type="date" id="employeeDate" name="employeeDate" required>
+    </div>
+</div>
+
+<!-- Vehicle Pictures Upload Section -->
+<div class="form-section">
+    <h3>Attach Pictures of the Vehicle</h3>
+    <p>Please upload clear pictures of the vehicle from all sides.</p>
+
+    <div class="form-group">
+        <label for="vehicleFront">Front:</label>
+        <input type="file" id="vehicleFront" name="vehicleFront" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
+        <label for="vehicleRear">Rear:</label>
+        <input type="file" id="vehicleRear" name="vehicleRear" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
+        <label for="vehicleLeft">Left Side:</label>
+        <input type="file" id="vehicleLeft" name="vehicleLeft" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
+        <label for="vehicleRight">Right Side:</label>
+        <input type="file" id="vehicleRight" name="vehicleRight" accept="image/*" required>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Submit Button -->
+<div class="form-group">
+    <button type="submit">Submit Report</button>
+</div>
+</form>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
